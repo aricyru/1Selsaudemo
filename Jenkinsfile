@@ -2,9 +2,7 @@ pipeline {
     agent any
 
     tools {
-        // Asegurate de que el nombre 'Maven' coincida con como lo llamaste en Global Tool Configuration de Jenkins
-        // Si no le pusiste nombre, avísame. Por ahora probemos sin 'tools' si ya está en el Path,
-        // o usa el nombre que le diste (ej: 'M3', 'Maven 3.9', etc.)
+        // Asegurate de que el nombre 'Maven' coincida con como lo llamaste en Global Tool Configuration
         maven 'Maven 3.9.12'
     }
 
@@ -23,4 +21,20 @@ pipeline {
             }
         }
     }
+
+    // --- AQUÍ ESTÁ LO NUEVO ---
+    post {
+        always {
+            publishHTML(target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'target/site/serenity',
+                reportFiles: 'index.html',
+                reportName: 'Reporte Serenity',
+                reportTitles: 'Resultados de Pruebas'
+            ])
+        }
+    }
+    // --------------------------
 }
