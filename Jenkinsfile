@@ -19,7 +19,7 @@ pipeline {
         stage('Compilar y Testear') {
             steps {
                 // Comando para ejecutar los tests en Windows
-                bat 'mvn clean test'
+                bat 'mvn clean verify'
             }
         }
     }
