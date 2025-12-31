@@ -10,5 +10,5 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com.saucedemo.steps"
 )
-public class Runner {
+public class RunnerTest {
 }
